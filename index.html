@@ -1,49 +1,72 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>AI Video Generator - Login</title>
+  <title>AI Video Generator</title>
 
   <style>
     body {
       margin: 0;
-      font-family: Arial;
-      background: linear-gradient(135deg,#141e30,#243b55);
+      font-family: Arial, sans-serif;
+      background: black;
       color: white;
       text-align: center;
     }
 
+    /* LOGIN */
     .login-box {
-      margin-top: 100px;
-      background: white;
-      color: black;
-      padding: 20px;
-      border-radius: 10px;
-      width: 280px;
-      margin-left: auto;
-      margin-right: auto;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #111;
+      padding: 30px;
+      border-radius: 15px;
+      width: 320px;
+      box-shadow: 0 0 20px #00ffcc;
     }
 
-    input {
+    .login-box h2 {
+      margin-bottom: 15px;
+    }
+
+    .login-box input {
       width: 90%;
-      padding: 8px;
-      margin: 8px 0;
-    }
-
-    button {
-      padding: 8px 15px;
-      background: #243b55;
-      color: white;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
       border: none;
-      cursor: pointer;
-      margin-top: 5px;
     }
 
+    .login-box button {
+      padding: 10px 25px;
+      border: none;
+      border-radius: 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background: linear-gradient(90deg, #ff00cc, #3333ff, #00ffcc);
+      color: white;
+    }
+
+    /* APP */
     #app {
       display: none;
+      padding: 15px;
+    }
+
+    .section {
+      margin: 20px 0;
+      padding: 15px;
+      background: #111;
+      border-radius: 10px;
     }
 
     .logout {
       background: red;
+      border: none;
+      padding: 8px 15px;
+      color: white;
+      border-radius: 15px;
+      cursor: pointer;
       margin-bottom: 10px;
     }
   </style>
@@ -53,29 +76,42 @@
 
 <!-- LOGIN -->
 <div id="login" class="login-box">
-  <h3>Login</h3>
-  <input id="user" placeholder="Username"><br>
-  <input id="pass" type="password" placeholder="Password"><br>
+  <h2>🔐 Login</h2>
+  <input id="user" placeholder="Username">
+  <input id="pass" type="password" placeholder="Password">
+  <br><br>
   <button onclick="login()">Login</button>
   <p id="msg" style="color:red;"></p>
 </div>
 
-<!-- APP -->
+<!-- APP PAGE -->
 <div id="app">
+
   <button class="logout" onclick="logout()">Logout</button>
-  <h2>🎬 AI Video Generator</h2>
 
-  <script type="module"
-    src="https://gradio.s3-us-west-2.amazonaws.com/5.9.0/gradio.js">
-  </script>
+  <h1>🎬 AI Video Generator</h1>
 
-  <gradio-app src="https://waloneai-sdxt-image-to-video.hf.space"></gradio-app>
+  <div class="section">
+    <h3>📸 Image / Video Generator</h3>
+
+    <script type="module"
+      src="https://gradio.s3-us-west-2.amazonaws.com/5.9.0/gradio.js">
+    </script>
+
+    <gradio-app src="https://waloneai-sdxt-image-to-video.hf.space"></gradio-app>
+  </div>
+
+  <div class="section">
+    <h3>🎥 Example Videos</h3>
+    <p>Scroll karke AI ke examples dekho</p>
+    <!-- future me yahan example videos dal sakte ho -->
+  </div>
+
 </div>
 
 <script>
-  // 🔑 CHANGE LOGIN DETAILS HERE
   var USERNAME = "harsh";
-  var PASSWORD = "123ai123";
+  var PASSWORD = "ai123";
 
   function login() {
     var u = document.getElementById("user").value;
@@ -92,11 +128,8 @@
   function logout() {
     document.getElementById("app").style.display = "none";
     document.getElementById("login").style.display = "block";
-    document.getElementById("user").value = "";
-    document.getElementById("pass").value = "";
-    document.getElementById("msg").innerText = "";
   }
 </script>
 
 </body>
-  </html>
+</html>
