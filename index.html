@@ -1,47 +1,69 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>AI Video Generator</title>
+  <title>AI Video Generator - Login</title>
 
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      font-family: Arial;
+      background: linear-gradient(135deg,#141e30,#243b55);
       color: white;
       text-align: center;
     }
 
-    header {
-      padding: 20px;
-      font-size: 22px;
-      font-weight: bold;
-    }
-
-    .box {
+    .login-box {
+      margin-top: 100px;
       background: white;
       color: black;
-      margin: 15px;
-      padding: 10px;
+      padding: 20px;
       border-radius: 10px;
+      width: 280px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    footer {
-      margin-top: 15px;
-      font-size: 12px;
-      opacity: 0.8;
+    input {
+      width: 90%;
+      padding: 8px;
+      margin: 8px 0;
+    }
+
+    button {
+      padding: 8px 15px;
+      background: #243b55;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 5px;
+    }
+
+    #app {
+      display: none;
+    }
+
+    .logout {
+      background: red;
+      margin-bottom: 10px;
     }
   </style>
 </head>
 
 <body>
 
-<header>
-  🎬 AI Video Generator
-</header>
+<!-- LOGIN -->
+<div id="login" class="login-box">
+  <h3>Login</h3>
+  <input id="user" placeholder="Username"><br>
+  <input id="pass" type="password" placeholder="Password"><br>
+  <button onclick="login()">Login</button>
+  <p id="msg" style="color:red;"></p>
+</div>
 
-<div class="box">
-  <p>Image upload karo aur AI se video banao</p>
+<!-- APP -->
+<div id="app">
+  <button class="logout" onclick="logout()">Logout</button>
+  <h2>🎬 AI Video Generator</h2>
 
   <script type="module"
     src="https://gradio.s3-us-west-2.amazonaws.com/5.9.0/gradio.js">
@@ -50,9 +72,31 @@
   <gradio-app src="https://waloneai-sdxt-image-to-video.hf.space"></gradio-app>
 </div>
 
-<footer>
-  © 2026 AI Video Generator
-</footer>
+<script>
+  // 🔑 CHANGE LOGIN DETAILS HERE
+  var USERNAME = "harsh";
+  var PASSWORD = "123ai123";
+
+  function login() {
+    var u = document.getElementById("user").value;
+    var p = document.getElementById("pass").value;
+
+    if (u === USERNAME && p === PASSWORD) {
+      document.getElementById("login").style.display = "none";
+      document.getElementById("app").style.display = "block";
+    } else {
+      document.getElementById("msg").innerText = "Wrong username or password";
+    }
+  }
+
+  function logout() {
+    document.getElementById("app").style.display = "none";
+    document.getElementById("login").style.display = "block";
+    document.getElementById("user").value = "";
+    document.getElementById("pass").value = "";
+    document.getElementById("msg").innerText = "";
+  }
+</script>
 
 </body>
-</html>
+  </html>
