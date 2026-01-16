@@ -12,7 +12,7 @@
       text-align: center;
     }
 
-    /* AUTH BOX (LOGIN / REGISTER) */
+    /* LOGIN & REGISTER BOX */
     .auth-box {
       position: fixed;
       top: 50%;
@@ -21,7 +21,7 @@
       background: #111;
       padding: 35px;
       border-radius: 15px;
-      width: 340px;
+      width: 330px;
       box-shadow: 0 0 25px #00ffcc;
     }
 
@@ -41,11 +41,9 @@
       cursor: pointer;
       background: linear-gradient(90deg,#ff00cc,#3333ff,#00ffcc);
       color: white;
-      margin-top: 10px;
     }
 
     .link {
-      margin-top: 10px;
       color: #00ffcc;
       cursor: pointer;
       font-size: 14px;
@@ -88,36 +86,46 @@
 
 <body>
 
+<!-- REGISTER -->
+<div id="registerBox" class="auth-box">
+  <h2>📝 Register</h2>
+  <input id="regUser" placeholder="Username">
+  <input id="regPass" type="password" placeholder="Password">
+  <br><br>
+  <button onclick="register()">Register</button>
+  <p id="regMsg" style="color:red;"></p>
+  <p class="link" onclick="showLogin()">Already have an account? Login</p>
+</div>
+
 <!-- LOGIN -->
-<div id="loginBox" class="auth-box">
+<div id="loginBox" class="auth-box" style="display:none;">
   <h2>🔐 Login</h2>
   <input id="loginUser" placeholder="Username">
   <input id="loginPass" type="password" placeholder="Password">
+  <br><br>
   <button onclick="login()">Login</button>
   <p id="loginMsg" style="color:red;"></p>
-  <div class="link" onclick="showRegister()">New user? Register</div>
-</div>
-
-<!-- REGISTER -->
-<div id="registerBox" class="auth-box" style="display:none;">
-  <h2>📝 Register</h2>
-  <input id="regUser" placeholder="Create Username">
-  <input id="regPass" type="password" placeholder="Create Password">
-  <button onclick="register()">Register</button>
-  <p id="regMsg" style="color:lightgreen;"></p>
-  <div class="link" onclick="showLogin()">Already have account? Login</div>
+  <p class="link" onclick="showRegister()">Create new account</p>
 </div>
 
 <!-- APP -->
 <div id="app">
+
   <button class="logout" onclick="logout()">Logout</button>
 
   <h1>🎬 AI Video Generator</h1>
 
   <div class="container">
 
+    <!-- PROFILE -->
     <div class="box">
-      <h3>📸 Image Upload & Video Generator</h3>
+      <h3>👤 User Profile</h3>
+      <p><b>Username:</b> <span id="profileName"></span></p>
+    </div>
+
+    <!-- VIDEO GENERATOR -->
+    <div class="box">
+      <h3>📸 Image → Video Generator</h3>
 
       <script type="module"
         src="https://gradio.s3-us-west-2.amazonaws.com/5.9.0/gradio.js">
@@ -126,16 +134,26 @@
       <gradio-app src="https://waloneai-sdxt-image-to-video.hf.space"></gradio-app>
     </div>
 
+    <!-- EXAMPLES -->
     <div class="box">
       <h3>🎥 Example Videos</h3>
-      <p>Scroll karke examples dekho</p>
+      <p>Yahan example videos add honge</p>
     </div>
 
   </div>
 </div>
 
 <script>
-  // REGISTER
+  function showLogin() {
+    document.getElementById("registerBox").style.display = "none";
+    document.getElementById("loginBox").style.display = "block";
+  }
+
+  function showRegister() {
+    document.getElementById("loginBox").style.display = "none";
+    document.getElementById("registerBox").style.display = "block";
+  }
+
   function register() {
     var u = document.getElementById("regUser").value;
     var p = document.getElementById("regPass").value;
@@ -148,10 +166,10 @@
     localStorage.setItem("username", u);
     localStorage.setItem("password", p);
 
-    document.getElementById("regMsg").innerText = "Registered successfully! Login now";
+    alert("Registration successful!");
+    showLogin();
   }
 
-  // LOGIN
   function login() {
     var u = document.getElementById("loginUser").value;
     var p = document.getElementById("loginPass").value;
@@ -163,6 +181,7 @@
       document.getElementById("loginBox").style.display = "none";
       document.getElementById("registerBox").style.display = "none";
       document.getElementById("app").style.display = "block";
+      document.getElementById("profileName").innerText = u;
     } else {
       document.getElementById("loginMsg").innerText = "Wrong username or password";
     }
@@ -171,16 +190,6 @@
   function logout() {
     document.getElementById("app").style.display = "none";
     showLogin();
-  }
-
-  function showRegister() {
-    document.getElementById("loginBox").style.display = "none";
-    document.getElementById("registerBox").style.display = "block";
-  }
-
-  function showLogin() {
-    document.getElementById("registerBox").style.display = "none";
-    document.getElementById("loginBox").style.display = "block";
   }
 </script>
 
