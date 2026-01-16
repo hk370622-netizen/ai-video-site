@@ -2,17 +2,57 @@
 <html>
 <head>
   <title>AI Video Generator</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: white;
+      text-align: center;
+    }
+
+    header {
+      padding: 20px;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .box {
+      background: white;
+      color: black;
+      margin: 15px;
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    footer {
+      margin-top: 15px;
+      font-size: 12px;
+      opacity: 0.8;
+    }
+  </style>
 </head>
+
 <body>
 
-<h2>AI Video Generator Website</h2>
+<header>
+  🎬 AI Video Generator
+</header>
 
-<script
-  type="module"
-  src="https://gradio.s3-us-west-2.amazonaws.com/5.9.0/gradio.js">
-</script>
+<div class="box">
+  <p>Image upload karo aur AI se video banao</p>
 
-<gradio-app src="https://waloneai-sdxt-image-to-video.hf.space"></gradio-app>
+  <script type="module"
+    src="https://gradio.s3-us-west-2.amazonaws.com/5.9.0/gradio.js">
+  </script>
+
+  <gradio-app src="https://waloneai-sdxt-image-to-video.hf.space"></gradio-app>
+</div>
+
+<footer>
+  © 2026 AI Video Generator
+</footer>
 
 </body>
 </html>
