@@ -1,197 +1,80 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>AI Video Generator</title>
 
+  <!-- Style -->
   <style>
     body {
       margin: 0;
+      padding: 0;
+      background: #000;
+      color: #fff;
       font-family: Arial, sans-serif;
-      background: black;
-      color: white;
       text-align: center;
     }
-
-    /* LOGIN & REGISTER BOX */
-    .auth-box {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: #111;
-      padding: 35px;
-      border-radius: 15px;
-      width: 330px;
-      box-shadow: 0 0 25px #00ffcc;
+    h1 {
+      margin: 20px 0;
+      font-size: 28px;
+      font-weight: bold;
     }
-
-    .auth-box input {
-      width: 95%;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 6px;
-      border: none;
-    }
-
-    .auth-box button {
-      padding: 10px 30px;
-      border: none;
-      border-radius: 20px;
-      font-size: 16px;
-      cursor: pointer;
-      background: linear-gradient(90deg,#ff00cc,#3333ff,#00ffcc);
-      color: white;
-    }
-
-    .link {
-      color: #00ffcc;
-      cursor: pointer;
-      font-size: 14px;
-    }
-
-    /* APP */
-    #app {
-      display: none;
-      min-height: 100vh;
-      padding: 20px;
-    }
-
     .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 25px;
-      max-width: 900px;
-      margin: auto;
-    }
-
-    .box {
-      width: 100%;
-      background: #111;
       padding: 20px;
-      border-radius: 15px;
     }
-
-    .logout {
-      background: red;
+    .box {
+      background: #111;
+      padding: 15px;
+      border-radius: 12px;
+      margin: 15px auto;
+      max-width: 600px;
+    }
+    button {
+      padding: 12px 25px;
       border: none;
-      padding: 8px 18px;
-      color: white;
-      border-radius: 15px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
       cursor: pointer;
-      margin-bottom: 15px;
+      background: linear-gradient(45deg, #ff0080, #00ffff);
+      color: #000;
+      margin-top: 10px;
     }
   </style>
+
+  <!-- Gradio script -->
+  <script type="module"
+    src="https://gradio.s3-us-west-2.amazonaws.com/5.9.0/gradio.js">
+  </script>
 </head>
 
 <body>
 
-<!-- REGISTER -->
-<div id="registerBox" class="auth-box">
-  <h2>📝 Register</h2>
-  <input id="regUser" placeholder="Username">
-  <input id="regPass" type="password" placeholder="Password">
-  <br><br>
-  <button onclick="register()">Register</button>
-  <p id="regMsg" style="color:red;"></p>
-  <p class="link" onclick="showLogin()">Already have an account? Login</p>
-</div>
-
-<!-- LOGIN -->
-<div id="loginBox" class="auth-box" style="display:none;">
-  <h2>🔐 Login</h2>
-  <input id="loginUser" placeholder="Username">
-  <input id="loginPass" type="password" placeholder="Password">
-  <br><br>
-  <button onclick="login()">Login</button>
-  <p id="loginMsg" style="color:red;"></p>
-  <p class="link" onclick="showRegister()">Create new account</p>
-</div>
-
-<!-- APP -->
-<div id="app">
-
-  <button class="logout" onclick="logout()">Logout</button>
-
-  <h1>🎬 AI Video Generator</h1>
-
-  <div class="container">
-
-    <!-- PROFILE -->
-    <div class="box">
-      <h3>👤 User Profile</h3>
-      <p><b>Username:</b> <span id="profileName"></span></p>
-    </div>
-
-    <!-- VIDEO GENERATOR -->
-    <div class="box">
-      <h3>📸 Image → Video Generator</h3>
-
-      <script type="module"
-        src="https://gradio.s3-us-west-2.amazonaws.com/5.9.0/gradio.js">
-      </script>
-
-      <gradio-app src="https://waloneai-sdxt-image-to-video.hf.space"></gradio-app>
-    </div>
-
-    <!-- EXAMPLES -->
-    <div class="box">
-      <h3>🎥 Example Videos</h3>
-      <p>Yahan example videos add honge</p>
-    </div>
-
-  </div>
-</div>
-
+<!-- Auto Smartlink Popup (after 3 sec) -->
 <script>
-  function showLogin() {
-    document.getElementById("registerBox").style.display = "none";
-    document.getElementById("loginBox").style.display = "block";
-  }
-
-  function showRegister() {
-    document.getElementById("loginBox").style.display = "none";
-    document.getElementById("registerBox").style.display = "block";
-  }
-
-  function register() {
-    var u = document.getElementById("regUser").value;
-    var p = document.getElementById("regPass").value;
-
-    if (u === "" || p === "") {
-      document.getElementById("regMsg").innerText = "Fill all fields";
-      return;
-    }
-
-    localStorage.setItem("username", u);
-    localStorage.setItem("password", p);
-
-    alert("Registration successful!");
-    showLogin();
-  }
-
-  function login() {
-    var u = document.getElementById("loginUser").value;
-    var p = document.getElementById("loginPass").value;
-
-    if (
-      u === localStorage.getItem("username") &&
-      p === localStorage.getItem("password")
-    ) {
-      document.getElementById("loginBox").style.display = "none";
-      document.getElementById("registerBox").style.display = "none";
-      document.getElementById("app").style.display = "block";
-      document.getElementById("profileName").innerText = u;
-    } else {
-      document.getElementById("loginMsg").innerText = "Wrong username or password";
-    }
-  }
-
-  function logout() {
-    document.getElementById("app").style.display = "none";
-    showLogin();
-  }
+  setTimeout(function(){
+    window.open("https://www.effectivegatecpm.com/i1nubf8h1?key=bf56fe953c4b8190e6092838e1b93ca6", "_blank");
+  }, 3000);
 </script>
+
+<h1>🎬 AI Video Generator</h1>
+
+<div class="container">
+
+  <!-- IMAGE → VIDEO GENERATOR -->
+  <div class="box">
+    <h3>📸 Image to Video Generator</h3>
+    <gradio-app src="https://waloneai-sdxt-image-to-video.hf.space"></gradio-app>
+  </div>
+
+  <!-- EXAMPLE VIDEOS -->
+  <div class="box">
+    <h3>🎥 Example Videos</h3>
+    <p>Scroll down to see more examples.</p>
+    <!-- Future example videos can be embedded here -->
+  </div>
+
+</div>
 
 </body>
 </html>
